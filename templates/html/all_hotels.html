@@ -1,0 +1,86 @@
+{%  extends 'html/layout.html' %}
+
+{% block body %}
+       <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center  header-dark ">
+    <div class="container d-flex align-items-center justify-content-between">
+  
+      <div class="logo">
+        <h1><a href="/">Tomisin</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+  
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+  
+    </div>
+  </header>
+  <!-- End Header -->
+  <main id="main">
+    <!-- ======= Services Section ======= -->
+<section id="services" class="services">
+    <div class="container">
+      <div class="section-title" data-aos="zoom-out">
+        <h2>Hotels</h2>
+        <p>Browse Hotels</p>
+      </div>
+    
+      <div class="row">
+        {% for key in hotels %}
+        <div class="col-lg-4 col-md-6" id="space">
+          <a href="{{url_for('route.preview', name=key.hotel_name)}}" style="text-decoration: none;">
+          <div class="icon-box" >
+            <!-- <div class="icon"><i class="bi bi-briefcase" style="color: #ff689b;"></i></div> -->
+            {%if key.bert_impression  == 'positive'%}
+            <img src="{{hotel_pic[0]}}" alt="alt">
+            {% elif key.bert_impression == 'negative'%}
+            <img src="{{hotel_pic[4]}}" alt="alt">
+            {%else %}
+            <img src="{{hotel_pic[3]}}" alt="alt">
+            {%endif%}
+            <h4 class="title">{{key.hotel_name}}</h4>
+            <p class="description">Address: {{key.hotel_address}}</p>
+            <p class="description" style="color: black;">CITY: {{key.hotel_city}}</p>
+            <p class="description" > Classification:  
+              {%if key.bert_impression == 'positive'%}
+              <span style="color: green; font-weight: 700;"> {{key.bert_impression.title()}}</span>
+              {% elif key.bert_impression == 'negative' %}
+              <span style="color: red; font-weight: 700;"> {{key.bert_impression.title()}}</span>
+              {% else %}
+              <span style="color: orange; font-weight: 700;"> {{key.bert_impression.title()}}</span>
+              {% endif %}
+              Review
+            </p>
+          
+          </div>
+        </a>
+        </div>
+        {% endfor%}
+       
+      </div>
+    
+    </div>
+    </section>
+    <!-- End Services Section -->
+    
+    </main><!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>True Review</h3>
+      <p>Classifing Reviews the proper way</p>
+   
+      <div class="copyright">
+        &copy; Copyright <strong><span>Tomisin Oladele (Teeto)</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+{% endblock %} 

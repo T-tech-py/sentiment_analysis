@@ -1,0 +1,161 @@
+{%  extends 'html/layout.html' %}
+
+{% block body %}
+       <!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center  header-dark ">
+    <div class="container d-flex align-items-center justify-content-between">
+  
+      <div class="logo">
+        <h1><a href="/">Tomisin</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+  
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="/login">Admin</a></li>
+          <li><a class="nav-link scrollto" href="/#portfolio-details">Hotels Details</a></li>
+          <li><a class="nav-link scrollto " href="/#testimonials">Testimonials</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+  
+    </div>
+  </header>
+  <!-- End Header -->
+  <main id="main">
+   <!-- ======= Breadcrumbs ======= -->
+   <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Hotel Details</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Hotel Preview</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <!-- ======= Portfolio Details Section ======= -->
+  <section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+      <div class="row gy-4">
+
+        <div class="col-lg-8">
+          <div class="portfolio-details-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+
+              <div class="swiper-slide">
+                <img src="{{url_for('static', filename= 'img/hotel_outside.jpg')}}" alt="alt">
+              </div>
+
+              <div class="swiper-slide">
+                <img src="{{url_for('static', filename= 'img/bedroom.jpg')}}" alt="alt">
+              </div>
+
+              <div class="swiper-slide">
+                <img src="{{url_for('static', filename= 'img/hotel_bankony.jpg')}}" alt="alt">
+              </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="portfolio-info">
+            <h3>Hotel Information</h3>
+            <ul>
+              <li><strong>Name</strong>: {{details[0].hotel_name}}</li>
+              <li><strong>Address</strong>: {{details[0].hotel_address}}</li>
+              <li><strong>City</strong>: {{details[0].hotel_city}}</li>
+              <li><strong>Country</strong>: {{details[0].hotel_country}}</li>
+            </ul>
+          </div>
+          <div class="portfolio-description">
+            <h2>About {{details[0].hotel_name}} Hotel</h2>
+            <p>
+                {{details[0].hotel_name}} is located at {{details[0].hotel_address}}, {{details[0].hotel_city}}, {{details[0].hotel_country}}.
+             </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Portfolio Details Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+    
+          <div class="section-title" data-aos="zoom-out">
+            <h2>Customers Reviews</h2>
+            <p> Here is what they are saying about {{details[0].hotel_name}}</p>
+          </div>
+    
+          <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="swiper-wrapper">
+                 {% for key in details %}
+            
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                   {{key.review}}
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <p>Classification:   </p>
+                    </div>
+                    {% if key.bert_impression == 'positive'%}
+                    <div class="col-md-6">
+                        <p style="color: green;">{{key.bert_impression}}</p>
+                    </div>
+                    {%elif key.bert_impression == 'neutral' %}
+                    <div class="col-md-6">
+                        <p style="color: orange;">{{key.bert_impression}}</p>
+                    </div>
+                    {% else %}
+                    <div class="col-md-6">
+                        <p style="color: red;">{{key.bert_impression}}</p>
+                    </div>
+                    {% endif %}
+                  </div>
+                  
+                  <h3>Guest</h3>
+                  <h4>The hotel guest</h4>
+                </div>
+              </div><!-- End testimonial item -->
+            {% endfor %}
+             
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+    
+        </div>
+      </section><!-- End Testimonials Section -->
+    
+    </main><!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>True Review</h3>
+      <p>Classifing Reviews the proper way</p>
+   
+      <div class="copyright">
+        &copy; Copyright <strong><span>Tomisin Oladele (Teeto)</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+{% endblock %} 

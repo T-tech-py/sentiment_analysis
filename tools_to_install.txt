@@ -1,0 +1,28 @@
+#  This are the tool that we will using for development
+#  We need to install then.
+
+# Python data science tool
+1. pandas
+2. numpy
+3. matplotlib
+
+# Python tool for model tranining and tokenizing 
+1. transformers
+2. pytorch
+3. emoji==0.6.0
+
+
+# Python framework $ tools
+1. flask
+2. flask-login
+3. flask-sqlalchemy
+4. werkzeug
+ 
+
+# database tool
+1. sqlLite3
+2. sqlalchemy
+
+# test
+1. pytest
+2. unit test

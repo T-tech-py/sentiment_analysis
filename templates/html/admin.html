@@ -1,0 +1,78 @@
+{%  extends 'html/layout.html' %}
+
+{% block body %}
+<header class="bg-gradient-dark">
+    <div class="page-header min-vh-75" style="background-image: url('https://th.bing.com/th/id/R.9f2f6ab1dd43d3ec74261bb0e31d8205?rik=pweQ5cA6tkfwnw&pid=ImgRaw&r=0');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center mx-auto my-auto">
+            <h1 class="text-white">Upload Your CSV File here</h1>
+           
+            
+            <form action=""method="POST" enctype="multipart/form-data">
+                <p><input type="file"  class="btn bg-gradient-dark" name="file"></p>
+                <p><button type="submit" class="btn btn-primary">Submit</button></p>
+                <!-- <div class="spinner-border text-primary"></div> -->
+            </form>
+            
+            {% if path|length > 1 %}
+              <div class="row">
+                <div class="col-md-6 col-lg-6">
+                  <p style="color: white;">{{path}}</p>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                  <button type="submit" class="btn btn-secondary">
+                    <a href="{{ url_for('route.download' ,download = path) }}"  style=" color: white; text-decoration: none;">
+                      Download
+                    </a>
+                  </button>
+                </div> 
+                </div>
+              {% else %} 
+             <div> </div>
+              {% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</div>
+
+ 
+<div>
+  <p id="our-service"><span id="our">Upload</span> File Guideline</p>
+  <p id="service-caption">Ensure you follow the steps highlighted below before<br> uploading a csv file</p>
+</div>
+<div class="container">
+    <Ol>
+        <li> Ensure your dataset has a column for hotel names titled <strong>name</strong> </li>
+        <li> Ensure your dataset has a column for countries titled <strong>country</strong></li>
+        <li> Ensure your dataset has a column for cities titled <strong>city</strong></li>
+        <li> Ensure your dataset has a column for address titled <strong>address</strong></li>
+        <li> Ensure your dataset has a column for hotel reviews titled <strong>review</strong></li>
+        <li> Ensure your dataset has a column for hotel ratings titled <strong>rating</strong></li>
+        <li> Ensure your dataset has a column for  rating classified into your expected impressions titled <strong>expectation</strong></li>
+    </Ol>
+
+
+    
+</div>
+     <!-- ======= Footer ======= -->
+     <footer id="footer">
+      <div class="container">
+        <h3>True Review</h3>
+        <p>Classifing Reviews the proper way</p>
+        <div class="credits">
+          <a href="{{url_for('auth.Logout')}}">Logout</a>
+        </div>
+        <div class="copyright">
+          &copy; Copyright <strong><span>Tomisin Oladele (Teeto)</span></strong>. All Rights Reserved
+        </div>
+       
+      </div>
+    </footer><!-- End Footer -->
+
+{% endblock %} 
